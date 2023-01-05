@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return ProductResource::collection($products);
+        return response()->json(ProductResource::collection($products));
     }
 
     /**
@@ -58,10 +58,10 @@ class ProductController extends Controller
                 'total_quantity_by_unit_id' => $productByUnit,
                 'image_path' => $product->image_path,
             ];
-            return $result;
+            return response()->json($result);
 
         } else {
-            return (new ProductResource($product));
+            return response()->json(new ProductResource($product));
         }
     }
 
